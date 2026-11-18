@@ -27,7 +27,7 @@ Audio playback is simulated via styled terminal status displays.
 Music_Playlist_Manager/
 │
 ├── common.h             # Common structures, prototypes, and constants
-├── member1_dll.c        # Doubly Linked List implementation (Main Playlist)
+├── DLL.c                # Doubly Linked List implementation (Main Playlist)
 ├── member2_queue.c      # Queue implementation (Play Queue - FIFO)
 ├── member3_stack.c      # Stack implementation (Recently Played History - LIFO)
 ├── member4_hashing.c    # Hash Table implementation (Search & Indexing)
@@ -41,7 +41,7 @@ Music_Playlist_Manager/
 
 | Member | File | Assigned Data Structure | Core Responsibilities |
 |---|---|---|---|
-| **Member 1** | `member1_dll.c` | **Doubly Linked List (DLL)** | Main playlist management: adding songs, removing songs by ID (first, middle, last nodes), bidirectional navigation (`Next`/`Prev`), maintaining current song pointer, displaying playlist. |
+| **Member 1** | `DLL.c` | **Doubly Linked List (DLL)** | Main playlist management: adding songs, removing songs by ID (first, middle, last nodes), bidirectional navigation (`Next`/`Prev`), maintaining current song pointer, displaying playlist. |
 | **Member 2** | `member2_queue.c` | **Queue (FIFO)** | Upcoming song queue using a linked list: enqueue, dequeue for playback, display queue, empty queue validation, and synchronized cleanup when songs are deleted. |
 | **Member 3** | `member3_stack.c` | **Stack (LIFO)** | Recently played history using a linked list: pushing completed songs, popping recent entries, displaying history top-to-bottom without popping, and cleanup. |
 | **Member 4** | `member4_hashing.c` | **Hash Table** | Fast song searching using a modulo hash function (`songID % TABLE_SIZE`), collision resolution using Separate Chaining (singly linked lists), inserting/deleting node references, and table visualization. |
@@ -104,7 +104,7 @@ To maintain memory efficiency and prevent duplicate records, the system utilizes
 Open your terminal, navigate to the `Music_Playlist_Manager` folder, and compile all files together:
 
 ```bash
-gcc -Wall -Wextra -std=c99 -o playlist_manager main.c member1_dll.c member2_queue.c member3_stack.c member4_hashing.c
+gcc -Wall -Wextra -std=c99 -o playlist_manager main.c DLL.c member2_queue.c member3_stack.c member4_hashing.c
 ```
 
 ### Execution Command
@@ -146,5 +146,5 @@ gcc -Wall -Wextra -std=c99 -o playlist_manager main.c member1_dll.c member2_queu
 
 ## 9. commands to run
 1. cd .\Music_Playlist_Manager
-2. gcc main.c member1_dll.c member2_queue.c member3_stack.c member4_hashing.c -o playlist_manager.exe
+2. gcc main.c DLL.c member2_queue.c member3_stack.c member4_hashing.c -o playlist_manager.exe
 3. .\playlist_manager.exe
