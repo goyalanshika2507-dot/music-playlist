@@ -23,14 +23,14 @@ Song* createSong(int id, const char* title, const char* artist, float duration){
     newsong->artist[STRING_MAX - 1] = '\0';
 
     newsong->duration=duration;
-    newsosng->prev=NULL;
-    newsosng->next=NULL;
+    newsong->prev=NULL;
+    newsong->next=NULL;
     
     return newsong;
 }
 
 int addSongToPlaylist(Playlist* p, Song* newsong){
-    if(p==NUll || newsong==NULL){
+    if(p==NULL || newsong==NULL){
         return 0;
     }
 
@@ -52,7 +52,7 @@ int addSongToPlaylist(Playlist* p, Song* newsong){
 }
 
 int removeSongFromPlaylist(Playlist *p, int id, Song** currentsong){
-    if(p==NULL || p->head=NULL){
+    if(p==NULL || p->head==NULL){
         return 0;
     }
 
@@ -85,9 +85,9 @@ int removeSongFromPlaylist(Playlist *p, int id, Song** currentsong){
     }
     else if(curr==p->head){
         p->head=curr->next;
-        p->head->NULL=NULL;
+        p->head->prev=NULL;
     }
-    else if(curr=p->tail){
+    else if(curr==p->tail){
         p->tail=curr->prev;
         p->tail->next=NULL;
     }
@@ -108,7 +108,7 @@ void displayPlaylist(const Playlist *p, const Song* currentsong){
     }
 
     printf("\n============================ MAIN PLAYLIST ============================\n");
-    printf("Total Songs: %d\n", pl->count);
+    printf("Total Songs: %d\n", p->count);
 
     printf("ID\tTitle\t\tArtist\t\tDuration\tStatus\n");
 
@@ -138,7 +138,7 @@ void displaySongCard(const Song *song){
 void freePlaylist(Playlist *p){
     if(p==NULL)
         return;
-    Song* curr=pl->head;
+    Song* curr=p->head;
     while (curr!=NULL) {
         Song* next=curr->next;
         free(curr);
